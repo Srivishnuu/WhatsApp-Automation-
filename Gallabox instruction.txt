@@ -1,0 +1,92 @@
+GALLABOX TEMPLATE SETUP — whatsapp_automation1
+================================================
+Recreate your lost template using these exact steps.
+
+STEP 1: LOG INTO GALLABOX
+  → Templates → Create New Template
+
+STEP 2: FILL IN THESE FIELDS EXACTLY
+  Template name : whatsapp_automation1
+  Category      : MARKETING
+  Language      : English (en)
+  Header        : NONE  ← do NOT add an image (reduces 131049 errors)
+  Footer        : (leave blank)
+
+STEP 3: PASTE THIS AS THE BODY (copy exactly, including emojis):
+───────────────────────────────────────────────────────────────────
+Hi {{1}}! 🌙
+{{2}}
+
+🌟 Based on your rashi & nakshatra:
+{{3}}
+
+Explore more astrology insights.
+By AstroVed Team
+───────────────────────────────────────────────────────────────────
+
+STEP 4: ADD BUTTON
+  Button type : URL
+  Button text : Explore Now
+  URL         : https://www.astroved.com/horoscopes
+
+STEP 5: FILL SAMPLE VALUES (Meta requires these for review)
+  {{1}} : Kishore | Virgo Moon | Hasta Nakshatra
+  {{2}} : Dynamic Virgo Moon energy brings focus and clarity to all your work today. Take one decisive step forward and trust the momentum you have built.
+  {{3}} : https://www.astroved.com/Report.aspx?type=numerology
+
+STEP 6: SUBMIT FOR APPROVAL
+  - Approval usually takes 24 hours
+  - If rejected, resubmit with slightly different sample text
+
+STEP 7: AFTER APPROVAL
+  Copy the Template ID shown in Gallabox and add it to your .env file:
+
+  UNIVERSAL_TEMPLATE_ID=paste_your_template_id_here
+
+  The .env file should look like this:
+  ─────────────────────────────────────────────
+  GALLABOX_API_KEY=your_api_key
+  GALLABOX_API_SECRET=your_api_secret
+  CHANNEL_ID=your_channel_id
+  UNIVERSAL_TEMPLATE_ID=your_template_id
+  ANTHROPIC_API_KEY=your_anthropic_key   (optional — enables AI messages)
+  ─────────────────────────────────────────────
+
+WHAT EACH VARIABLE DOES IN YOUR MESSAGE:
+  {{1}} → "Kishore | Virgo Moon | Hasta Nakshatra"
+           (header line identifying the user's rashi and nakshatra)
+
+  {{2}} → "Dynamic Virgo Moon energy brings focus and clarity to all your work today.
+            Take one decisive step forward and trust the momentum you have built."
+           (the personalised AI-generated insight — unique for every user)
+
+  {{3}} → "https://www.astroved.com/Report.aspx?type=numerology"
+           (the free tool URL — rotates across all 12 tools per user)
+
+HOW IT RENDERS ON WHATSAPP (matches your screenshot):
+───────────────────────────────────────────────────────
+Hi Kishore | Virgo Moon | Hasta Nakshatra! 🌙
+✨ Dynamic Virgo Moon energy brings focus and clarity to all your work today. Take one decisive step forward and trust the momentum you have built.
+
+🌟 Based on your rashi & nakshatra:
+https://www.astroved.com/Report.aspx?type=numerology
+
+Explore more astrology insights.
+By AstroVed Team
+
+                              [ Explore Now ↗ ]
+───────────────────────────────────────────────────────
+
+UNIQUENESS GUARANTEES (no two users get the same message):
+  ✅ Each user gets a unique insight (AI-generated OR from 144+ fallback combos)
+  ✅ Each user gets a different tool URL (rotates across all 12 tools via uuid seed)
+  ✅ Opener word is unique per user (30-word pool, seeded by uuid)
+  ✅ Duplicate window = 1000 messages (md5 hash check)
+  ✅ No message starts with "Your" (Meta flags this pattern)
+  ✅ "your" appears at most once per message
+
+RUNNING THE PIPELINE:
+  Test first:   python test_send.py
+  Preview:      python main_pipeline.py --week 1 --preview
+  Send Week 1:  python main_pipeline.py --week 1
+  Check status: python main_pipeline.py --status

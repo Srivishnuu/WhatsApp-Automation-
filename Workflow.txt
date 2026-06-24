@@ -1,0 +1,115 @@
+--------------------------------------------------------------------------------------
+                                Project Current Workflow
+---------------------------------------------------------------------------------------
+Database (MSSQL)
+        │
+        │ Fetch customer data [Using CTE]
+        ▼
+Python Backend Script
+        │
+        │ Process data (Name, Nakshatra, MoonSign etc.)
+        ▼
+AI / Message Generator (Optional)
+        │
+        │ Generate personalized message
+        ▼
+WhatsApp API (Gallabox)
+        │
+        ▼
+Customer receives WhatsApp message
+----------------------------------------------------------------------------------------
+SQL Server -- Py to DB conn
+   ↓
+Python Fetch Data 
+   ↓
+Create CSV
+   ↓
+Generate Message -- GPT [API key needed]
+   ↓
+requests → Gallabox API -- Gallabox [API key needed]
+   ↓
+Send WhatsApp --[Zoho CRM]
+---------------------------------------------------------------------------------------
+                                   Current Planning 
+---------------------------------------------------------------------------------------
+Campaign 1
+FREE ASTROLOGY
+    ↓
+Campaign 2
+HOROSCOPE REPORT 
+    ↓
+Campaign 3
+REMEDY POOJA
+    ↓
+Campaign 4
+TEMPLE OFFERING
+----------------------------------------------------------------------------------------
+                                WH - Message Conditions
+----------------------------------------------------------------------------------------
+Recommended Message Limit
+
+Safe sending limits:
+Messages	Speed
+100	1/sec
+1000	2/sec
+10000	queue system
+--------------------------------------------------------------------------------------- 
+                                    Files and Usage 
+---------------------------------------------------------------------------------------
+Files You KEEP ✅
+These are required for your WhatsApp AI system.
+
+1. .env - API keys
+2. db_conn.py - Fetch customer data from SQL
+3. sitemap_loader.py - Load Astroved sitemap
+4. pooja_recommender.py - Suggest pooja based on rashi
+5. message_generator.py - AI message generation
+6. image_generator.py - AI pooja image
+7. whatsapp_sender.py - Send WhatsApp message
+8. Main_pipeline.py - Main program
+9. customer_data.csv	- Customer dataset
+---------------------------------------------------------------------------------------
+Customer 1 — Aries / Ashwini
+---------------------------------------------------------------------------------------
+🌟 Hi Ramesh Kumar!
+As an Aries born in Ashwini Nakshatra, your
+natural leadership and bold energy are your
+greatest strengths today! Channel your fire
+wisely. 🔥✨
+
+🔮 Recommended Free Tool for You: Free Astrology Reading
+👉 https://www.astroved.com/free-astrology
+
+Explore more astrology insights:
+https://www.astroved.com
+
+----------------------------------------------------------------------------------------
+                              Example.schedule
+----------------------------------------------------------------------------------------
+# Week 1 — rows 1 to 500
+python main_pipeline.py --limit 500
+
+# Week 2 — rows 501 to 1000
+python main_pipeline.py --skip 500 --limit 500
+
+# Week 3 — rows 1001 to 1500
+python main_pipeline.py --skip 1000 --limit 500
+
+# Week 4 — rows 1501 to 2000
+python main_pipeline.py --skip 1500 --limit 500
+
+# ...continues the same pattern up to week 18 for all 9000 users
+
+---------------------------------------------------------------------------------------
+                           Message Template Sample 
+---------------------------------------------------------------------------------------
+
+Hi!! Penugonda | Taurus Moon in Rohini  
+Today's Special: Steady Taurus Moon energy grounds you with calm and purpose today. Trust your instincts and invest your energy in what brings lasting value. Nurturing Rohini Nakshatra energy attracts abundance as your creativity and natural charm draw blessings in.  
+ 
+Based on the Moon Sign, Your Suggestion:  
+https://www.astroved.com/astropedia/en/freetools/gemstone  
+ 
+Explore more astrology insights.  
+-By AstroVed Team
+-------------------------------------------------------------------------------------- 
